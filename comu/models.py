@@ -4,8 +4,7 @@ from django.utils import timezone
 
 
 def upload_file(filter_instance, filename):
-	print(filter_instance.id)
-	return f'{filter_instance.create_date.strftime("%y%m%d")}_{filter_instance.id}'
+	return f'filters/{filter_instance.create_date.strftime("%y%m%d")}_{filter_instance.name}'
 
 
 def validate_size(file):
@@ -38,4 +37,4 @@ class Report(models.Model):
 		]
 
 	def __str__(self):
-		return f'{self.create_date} {self.filter} {self.stock_code}'
+		return f'{self.filter} {self.create_date} {self.stock_code}'

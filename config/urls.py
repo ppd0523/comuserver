@@ -15,9 +15,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django.shortcuts import render
+from django.contrib.auth.views import LogoutView
+
+
+def index(req):
+    return render(request=req, template_name='index.html', content_type='text/html')
 
 
 urlpatterns = [
+    path('', index),
     path('admin/', admin.site.urls),
-    path('api/', include('comu.urls'))
+    path('api/', include('comu.urls')),
+    path('accounts/', include('allauth.urls')),
+    path('logout', LogoutView.as_view())
 ]
